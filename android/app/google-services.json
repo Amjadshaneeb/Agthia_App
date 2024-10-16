@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "287168627612",
+    "project_id": "agthia-booking",
+    "storage_bucket": "agthia-booking.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:287168627612:android:e7128012cb169559d2fe59",
+        "android_client_info": {
+          "package_name": "com.example.agthia_slot_booking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "287168627612-2p9p1phf39fr1hbde5d5ka3sp1k1hpid.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSlbYbBEh9I20fIQV-fr3_enTWLj7sQLk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "287168627612-2p9p1phf39fr1hbde5d5ka3sp1k1hpid.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
