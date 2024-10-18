@@ -8,9 +8,10 @@ final List<String> pics = [
 ];
 
 final List<String> sorting = [
-  "All",
-  "Brands",
-  "Local",
+  "International Brands",
+  "Local Brands",
+  "Media",
+  "Careers",
 ];
 final List<String> brands = [
   "   BEEFBAR",
@@ -38,4 +39,13 @@ final List<String> profile = [
   "Settings",
   "Help Centre",
   "Log Out",
+];
+
+final List<String> url = [
+
+'https://Facebook.com',
+'https://Instagram.com',
+'https://x.com',
+
+
 ];

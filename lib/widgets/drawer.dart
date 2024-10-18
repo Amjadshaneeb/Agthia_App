@@ -1,7 +1,8 @@
-import 'package:agthia_slot_booking/User_pages/homePage.dart';
+import 'package:agthia_slot_booking/firebase_services/services.dart';
 import 'package:agthia_slot_booking/user_pages/company_Pages/about_us.dart';
 import 'package:agthia_slot_booking/user_pages/company_Pages/contact_us.dart';
 import 'package:agthia_slot_booking/user_pages/settings.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -39,18 +40,47 @@ class MyDrawer extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  const Text(
-                    'Amjad Shaneeb',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                    ),
-                  ),
-                  Text(
-                    'amjadshaneeb@gmail.com',
-                    style: TextStyle(
-                      color: Colors.white.withOpacity(0.5),
-                      fontSize: 15,
+                  SizedBox(
+                    height: 60,
+                    width: 60,
+                    child: StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection('Userid')
+                          .where("Mail", isEqualTo: usermail)
+                          .snapshots(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (!snapshot.hasData) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                        return ListView(
+                          children: snapshot.data!.docs.map((document) {
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Text(
+                                  document["Name"],
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24,
+                                  ),
+                                ),
+                                Text(
+                                  document["Mail"],
+                                  style: TextStyle(
+                                    color: Colors.white.withOpacity(0.5),
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              ],
+                            );
+                          }).toList(),
+                          // child: const
+                        );
+                      },
                     ),
                   ),
                 ],

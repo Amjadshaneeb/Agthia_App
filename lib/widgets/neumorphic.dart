@@ -5,12 +5,17 @@ class NuemTextfield extends StatelessWidget {
       {super.key,
       required this.hinttext,
       required this.depth,
-      required this.color, required this.icon});
+      required this.color,
+      required this.icon,
+      required this.obscure, required this.controller, required this.capwords});
 
   final String hinttext;
   final double depth;
   final Color color;
   final Icon icon;
+  final bool obscure;
+  final TextEditingController controller;
+  final TextCapitalization capwords;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +32,11 @@ class NuemTextfield extends StatelessWidget {
         ),
       ),
       child: TextField(
-        obscureText: true,
+        textCapitalization: capwords ,        
+        obscureText: obscure,
+        controller: controller,
         decoration: InputDecoration(
-          prefixIcon:icon,
+          prefixIcon: icon,
           hintText: hinttext,
           hintStyle: TextStyle(color: Colors.grey.withOpacity(0.6)),
           border: InputBorder.none,

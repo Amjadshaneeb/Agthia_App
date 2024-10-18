@@ -1,4 +1,6 @@
+import 'package:agthia_slot_booking/firebase_services/services.dart';
 import 'package:agthia_slot_booking/widgets/List/list.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,7 +11,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFF0f172b),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         centerTitle: true,
@@ -17,7 +19,7 @@ class ProfilePage extends StatelessWidget {
         title: Text(
           "Profile",
           style: GoogleFonts.ptSerif(
-            textStyle: const TextStyle(color: Color(0xFF0f172b)),
+            textStyle: const TextStyle(color: Colors.white),
           ),
         ),
       ),
@@ -25,35 +27,60 @@ class ProfilePage extends StatelessWidget {
         children: [
           const SizedBox(height: 50),
           Container(
-            height: 250,
+            height: 230,
             width: 500,
             decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 255, 102, 0),
+                color: Color(0xFF0f172b),
                 borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(25),
                     bottomLeft: Radius.circular(25))),
-            child: const Column(
+            child: Column(
               children: [
-                SizedBox(height: 20),
-                Center(
-                  child: CircleAvatar(
-                    radius: 60,
-                    child: Icon(Icons.person_2_outlined),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircleAvatar(
+                      radius: 60,
+                      child: Icon(Icons.person_2_outlined),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  height: 40,
+                  child: StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection('Userid')
+                        .where("Mail", isEqualTo: usermail)
+                        .snapshots(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                      return Align(
+                        alignment: Alignment.topCenter,
+                        child: Column(
+                          children: snapshot.data!.docs.map((document) {
+                            return Text(
+                              document["Name"],
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 24,
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      );
+                    },
                   ),
                 ),
-                SizedBox(height: 20),
-                Text(
-                  "User Name",
-                  style: TextStyle(color: Colors.white, fontSize: 19),
-                )
               ],
             ),
           ),
           Expanded(
-            flex: 50,
             child: ListView.builder(
                 itemCount: 5,
-                padding: const EdgeInsets.all(30),
+                padding: const EdgeInsets.all(20),
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
                   return Column(
@@ -61,8 +88,8 @@ class ProfilePage extends StatelessWidget {
                       Container(
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
-                            color: const Color(0xFF0f172b),
-                            borderRadius: BorderRadius.circular(20)),
+                            // color: Colors.white,
+                            borderRadius: BorderRadius.circular(5)),
                         child: Column(
                           children: [
                             ListTile(
@@ -83,8 +110,11 @@ class ProfilePage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const SizedBox(
-                        height: 10,
+                      // const SizedBox(
+                      //   height: 10,
+                      // ),
+                      const Divider(
+                        color: Colors.white,
                       )
                     ],
                   );

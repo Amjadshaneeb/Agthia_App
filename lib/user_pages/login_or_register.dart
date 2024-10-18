@@ -7,13 +7,11 @@ import 'package:google_fonts/google_fonts.dart';
 
   void showBottomSheet(BuildContext context) {
     showModalBottomSheet(
-      isScrollControlled: true,
+       scrollControlDisabledMaxHeightRatio: 0.8,
       context: context,
       builder: (context) {
-        return SizedBox(
-          height: MediaQuery.of(context).size.height * 0.8,
-          child: isLogin ? const LoginPage() : const SignupPage(),
-        );
+        return  isLogin ? const LoginPage() : const SignupPage();
+      
       },
     );
   }

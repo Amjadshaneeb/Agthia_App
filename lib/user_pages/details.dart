@@ -2,6 +2,7 @@ import 'package:agthia_slot_booking/user_pages/homeBottomNavigation.dart';
 import 'package:agthia_slot_booking/widgets/List/list.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({super.key});
@@ -59,70 +60,111 @@ class DetailsPage extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 0.5,
                 decoration: const BoxDecoration(color: Colors.white),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Text(
-                      brands[0],
-                      style: GoogleFonts.ptSerif(
-                          color: Colors.black,
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        const SizedBox(width: 15),
-                        const Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                        ),
-                        Text(
-                          "4.3 ",
-                          style: GoogleFonts.aBeeZee(
-                            fontWeight: FontWeight.bold,
+                child: SingleChildScrollView(
+                  
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        brands[0],
+                        style: GoogleFonts.ptSerif(
+                            color: Colors.black,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                _launchUrl(0);
+                              },
+                              icon: const Icon(
+                                Icons.facebook,
+                                size: 42,
+                                color: Colors.black,
+                              )),
+                          IconButton(
+                              onPressed: () {
+                                _launchUrl(1);
+                              },
+                              icon: Image.asset(
+                                "assets/Instagram.png",
+                                scale: 30,
+                              )),
+                          IconButton(
+                            onPressed: () {
+                              _launchUrl(2);
+                            },
+                            icon: Image.asset(
+                              "assets/ebe2b20b859a8d346bcb27d17e941e7d.png",
+                              scale: 30,
+                            ),
                           ),
-                        ),
-                        Text(
-                          "(432 Reviews)",
-                          style: GoogleFonts.aBeeZee(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey.withOpacity(0.6)),
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text("xedfrcgtvhybjnkml\nrtfgyhbunjcfvgbhnj"),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.13,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: TextButton(
-                        onPressed: () {},
-                        style: TextButton.styleFrom(
-                          backgroundColor: const Color(0xFF0f172b),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(7),
-                          ),
-                        ),
-                        child: const Text(
-                          "Reserve",
-                          style: TextStyle(color: Colors.white),
+                        ],
+                      ),
+                      
+                      Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Text(
+                          "Born in Monte-Carlo, full of contrasts, our brand breaks with rigid, traditional codes. Through its glamorous architectural lines & bold menu, we re-think food and incorporate a modern luxury feel while offering a complete and more accessible experience. From the kitchen, our executive chef Thierry Paludetto works closely with Riccardo Giraudi to create incredible, tasty yet simple dishes.",
+                          style: GoogleFonts.breeSerif(),
                         ),
                       ),
-                    )
-                  ],
+                      
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: TextButton(
+                          onPressed: () {},
+                          style: TextButton.styleFrom(
+                            backgroundColor: const Color(0xFF0f172b),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(7),
+                            ),
+                          ),
+                          child: const Text(
+                            "Reserve",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: TextButton(
+                          onPressed: () {},
+                          style: TextButton.styleFrom(
+                            backgroundColor: const Color(0xFF0f172b),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(7),
+                            ),
+                          ),
+                          child: const Text(
+                            "Subscribe",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               )
             ],
           ),
         ));
+  }
+
+  Future<void> _launchUrl(int index) async {
+    final Uri uri = Uri.parse(url[index]);
+
+    if (!await launchUrl(
+      uri,
+      mode: LaunchMode.inAppWebView,
+    )) {
+      throw Exception('Could not launch ${url[index]}');
+    }
   }
 }

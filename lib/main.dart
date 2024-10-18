@@ -1,5 +1,7 @@
-import 'package:agthia_slot_booking/AuthServices/auth_gate.dart';
+import 'package:agthia_slot_booking/Admin_pages/admin_Home.dart';
+import 'package:agthia_slot_booking/firebase_services/auth_gate.dart';
 import 'package:agthia_slot_booking/user_pages/signup_page.dart';
+import 'package:agthia_slot_booking/widgets/theme_color.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -18,10 +20,9 @@ class MyApp extends StatelessWidget {
       routes: {"SignupPage": (context) => const SignupPage()},
       debugShowCheckedModeBanner: false,
       title: 'Agthia',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      themeMode: ThemeMode.system,
+      theme: lightTheme(),
+      darkTheme: darkTheme(),
       home: const AuthGate(),
     );
   }

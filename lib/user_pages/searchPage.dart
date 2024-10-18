@@ -10,7 +10,10 @@ class Searchpage extends StatelessWidget {
       body: SafeArea(
           child: Column(
         children: [
-          Mytextfield(hinttext: "Search here", icon: Icon(Icons.search))
+          SizedBox(height: 10,),
+          Mytextfield(
+            obscure: false,
+            hinttext: "Search here", icon: Icon(Icons.search))
         ],
       )),
     );

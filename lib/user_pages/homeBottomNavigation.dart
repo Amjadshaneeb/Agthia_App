@@ -23,7 +23,7 @@ class _HomepageState extends State<Homepage> {
   final List<Widget> pages = [
     const HomepageContent(),
     const Searchpage(),
-    const DetailsPage(),
+    const HomepageContent(),
     const ProfilePage(),
   ];
 
@@ -36,8 +36,7 @@ class _HomepageState extends State<Homepage> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home,
-                        size: 28,
-
+                size: 28,
                 color: tappedIndex == 0
                     ? const Color.fromARGB(255, 255, 102, 0)
                     : Colors.grey),
@@ -45,8 +44,7 @@ class _HomepageState extends State<Homepage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search,
-                        size: 28,
-
+                size: 28,
                 color: tappedIndex == 1
                     ? const Color.fromARGB(255, 255, 102, 0)
                     : Colors.grey),
@@ -54,7 +52,7 @@ class _HomepageState extends State<Homepage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite,
-            size: 28,
+                size: 28,
                 color: tappedIndex == 2
                     ? const Color.fromARGB(255, 255, 102, 0)
                     : Colors.grey),
@@ -62,8 +60,7 @@ class _HomepageState extends State<Homepage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_2,
-                        size: 28,
-
+                size: 28,
                 color: tappedIndex == 3
                     ? const Color.fromARGB(255, 255, 102, 0)
                     : Colors.grey),
