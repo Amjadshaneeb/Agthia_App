@@ -5,8 +5,8 @@ ThemeData lightTheme() {
     brightness: Brightness.light,
     primaryColor: Colors.blue,
     appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.white,
-      titleTextStyle: TextStyle(color:  Color(0xFF0f172b), fontSize: 20),
+      backgroundColor:  Color(0xFF302c34),
+      titleTextStyle: TextStyle(color:  Colors.white),
       iconTheme: IconThemeData(color: Colors.white),
     ),
     scaffoldBackgroundColor: Colors.white,
@@ -32,7 +32,7 @@ ThemeData darkTheme() {
     primaryColor: Colors.teal,
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.black,
-      titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
+      titleTextStyle: TextStyle(color: Colors.white),
       iconTheme: IconThemeData(color: Colors.white),
     ),
     scaffoldBackgroundColor: Colors.grey,

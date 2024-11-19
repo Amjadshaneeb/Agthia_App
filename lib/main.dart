@@ -1,11 +1,16 @@
-import 'package:agthia_slot_booking/Admin_pages/admin_Home.dart';
-import 'package:agthia_slot_booking/firebase_services/auth_gate.dart';
-import 'package:agthia_slot_booking/user_pages/signup_page.dart';
+import 'package:agthia_slot_booking/user_pages/splash_screen.dart';
+import 'package:agthia_slot_booking/widgets/provider.dart';
 import 'package:agthia_slot_booking/widgets/theme_color.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
+  ]);
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -16,14 +21,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: {"SignupPage": (context) => const SignupPage()},
-      debugShowCheckedModeBanner: false,
-      title: 'Agthia',
-      themeMode: ThemeMode.system,
-      theme: lightTheme(),
-      darkTheme: darkTheme(),
-      home: const AuthGate(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => FunctionProvider()),
+        ChangeNotifierProvider(create: (_) => BrandProvider()),
+        ChangeNotifierProvider(create: (_) => ImagePickerProvider()),
+        ChangeNotifierProvider(create: (_) => BannerProvider()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Agthia',
+        themeMode: ThemeMode.system,
+        theme: lightTheme(),
+        darkTheme: darkTheme(),
+        home: const SplashScreen(),
+      ),
     );
   }
 }

@@ -1,13 +1,8 @@
-import 'package:agthia_slot_booking/Admin_pages/admin_Home.dart';
 import 'package:agthia_slot_booking/firebase_services/services.dart';
-import 'package:agthia_slot_booking/user_pages/homeBottomNavigation.dart';
-import 'package:agthia_slot_booking/user_pages/login_or_register.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_signin_button/button_list.dart';
-import 'package:flutter_signin_button/button_view.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:neumorphic_ui/neumorphic_ui.dart';
+
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -36,162 +31,148 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: SingleChildScrollView(
-        physics: ScrollPhysics(parent: FixedExtentScrollPhysics()),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(height: 25),
-            const CircleAvatar(
-              backgroundImage: AssetImage("assets/Agthia.png"),
-              radius: 60,
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.85,
-              child: Column(
-                children: [
-                  Column(
+        child: Builder(
+          builder: (context) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 25),
+                const CircleAvatar(
+                  backgroundImage: AssetImage("assets/Agthia.png"),
+                  radius: 60,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 0.85,
+                  child: Column(
                     children: [
-                      const SizedBox(height: 20),
-                      Text(
-                        'Welocome Back!',
-                        style: GoogleFonts.dmSerifDisplay(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const Text(
-                        'Made easy!',
-                        style: TextStyle(fontSize: 16, color: Colors.grey),
-                      ),
-                      const SizedBox(height: 20),
-                      Neumorphic(
-                        //username textfield
-                        margin: const EdgeInsets.all(15),
-                        style: NeumorphicStyle(
-                          depth: -3,
-                          shadowLightColorEmboss: Colors.white.withOpacity(0.5),
-                          lightSource: LightSource.topLeft,
-                          intensity: 20,
-                          color: const Color(0xFFE0E5EC),
-                          boxShape: NeumorphicBoxShape.roundRect(
-                            BorderRadius.circular(25),
+                      Column(
+                        children: [
+                          const SizedBox(height: 20),
+                          Text(
+                            'Welocome Back!',
+                            style: GoogleFonts.dmSerifDisplay(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        child: TextField(
-                          controller: loginmailcontroller,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.person_2_outlined),
-                            hintText: "Mail",
-                            hintStyle:
-                                TextStyle(color: Colors.grey.withOpacity(0.6)),
-                            border: InputBorder.none,
-                            contentPadding: const EdgeInsets.symmetric(
-                                vertical: 18, horizontal: 12),
+                          const Text(
+                            'Made easy!',
+                            style: TextStyle(fontSize: 16, color: Colors.grey),
                           ),
-                        ),
-                      ),
-                      Neumorphic(
-                        //password textfield
-                        margin: const EdgeInsets.all(15),
-                        style: NeumorphicStyle(
-                          depth: -3,
-                          lightSource: LightSource.topLeft,
-                          intensity: 20,
-                          surfaceIntensity: 1,
-                          color: const Color(0xFFE0E5EC),
-                          boxShape: NeumorphicBoxShape.roundRect(
-                            BorderRadius.circular(25),
-                          ),
-                        ),
-                        child: TextField(
-                          controller: loginpasscontroller,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.lock_outline),
-                            hintText: "password",
-                            hintStyle:
-                                TextStyle(color: Colors.grey.withOpacity(0.6)),
-                            border: InputBorder.none,
-                            contentPadding: const EdgeInsets.symmetric(
-                                vertical: 18, horizontal: 12),
-                          ),
-                        ),
-                      ),
-                      NeumorphicButton(
-                        margin: const EdgeInsets.all(15),
-                        onPressed: () {
-                          login(context);
-                        },
-                        style: NeumorphicStyle(
-                            color: const Color.fromARGB(237, 0, 0, 0),
-                            boxShape: NeumorphicBoxShape.roundRect(
-                                BorderRadius.circular(25)),
-                            depth: -4,
-                            intensity: 10,
-                            shadowLightColor: Colors.red,
-                            shadowDarkColor: Colors.red),
-                        child: const Center(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 16),
-                            child: Text(
-                              "Login",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
+                          const SizedBox(height: 20),
+                          Neumorphic(
+                            //username textfield
+                            margin: const EdgeInsets.all(15),
+                            style: NeumorphicStyle(
+                              depth: -3,
+                              shadowLightColorEmboss: Colors.white.withOpacity(0.5),
+                              lightSource: LightSource.topLeft,
+                              intensity: 20,
+                              color: const Color(0xFFE0E5EC),
+                              boxShape: NeumorphicBoxShape.roundRect(
+                                BorderRadius.circular(25),
+                              ),
+                            ),
+                            child: TextField(
+                              controller: loginmailcontroller,
+                              decoration: InputDecoration(
+                                prefixIcon: const Icon(Icons.person_2_outlined),
+                                hintText: "Mail",
+                                hintStyle:
+                                    TextStyle(color: Colors.grey.withOpacity(0.6)),
+                                border: InputBorder.none,
+                                contentPadding: const EdgeInsets.symmetric(
+                                    vertical: 18, horizontal: 12),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          TextButton(
-                              onPressed: () {
-                                resetpassword(context);
-                              },
-                              child: Text(
-                                "Forgot password?",
-                                style: TextStyle(color: Colors.grey),
-                              )),
-                          TextButton(
-                            style: const ButtonStyle(
-                                splashFactory: NoSplash.splashFactory),
-                            onPressed: () {
-                              setState(() {
-                                isLogin = false;
-                              });
-                              Navigator.pop(context);
-                            },
-                            child: Text(
-                              " or Sign Up",
-                              style: TextStyle(
-                                  color: Colors.black.withOpacity(0.6),
-                                  fontWeight: FontWeight.bold),
+                          Neumorphic(
+                            //password textfield
+                            margin: const EdgeInsets.all(15),
+                            style: NeumorphicStyle(
+                              depth: -3,
+                              lightSource: LightSource.topLeft,
+                              intensity: 20,
+                              surfaceIntensity: 1,
+                              color: const Color(0xFFE0E5EC),
+                              boxShape: NeumorphicBoxShape.roundRect(
+                                BorderRadius.circular(25),
+                              ),
                             ),
-                          )
+                            child: TextField(
+                              controller: loginpasscontroller,
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                prefixIcon: const Icon(Icons.lock_outline),
+                                hintText: "password",
+                                hintStyle:
+                                    TextStyle(color: Colors.grey.withOpacity(0.6)),
+                                border: InputBorder.none,
+                                contentPadding: const EdgeInsets.symmetric(
+                                    vertical: 18, horizontal: 12),
+                              ),
+                            ),
+                          ),
+                          NeumorphicButton(
+                            margin: const EdgeInsets.all(15),
+                            onPressed: () {
+                              login(context);
+                            },
+                            style: NeumorphicStyle(
+                                color: const Color.fromARGB(237, 0, 0, 0),
+                                boxShape: NeumorphicBoxShape.roundRect(
+                                    BorderRadius.circular(25)),
+                                depth: -4,
+                                intensity: 10,
+                                shadowLightColor: Colors.red,
+                                shadowDarkColor: Colors.red),
+                            child: const Center(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 16),
+                                child: Text(
+                                  "Login",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              TextButton(
+                                  onPressed: () {
+                                    resetpassword(context);
+                                  },
+                                  child: const Text(
+                                    "Forgot password?",
+                                    style: TextStyle(color: Colors.grey),
+                                  )),
+                            ],
+                          ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children: [
+                          //     SignInButton(Buttons.Google,
+                          //         elevation: 10,
+                          //         shape: Border.all(),
+                          //         text: "   Sign in with Google", onPressed: () {
+                          //       signinwithGoogle(context);
+                          //     }),
+                          //   ],
+                          // ),
                         ],
-                      ),
-                      const SizedBox(height: 15),
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.center,
-                      //   children: [
-                      //     SignInButton(Buttons.Google,
-                      //         elevation: 10,
-                      //         shape: Border.all(),
-                      //         text: "   Sign in with Google", onPressed: () {
-                      //       signinwithGoogle(context);
-                      //     }),
-                      //   ],
-                      // ),
+                      )
                     ],
-                  )
-                ],
-              ),
-            )
-          ],
+                  ),
+                )
+              ],
+            );
+          }
         ),
       ),
     );
