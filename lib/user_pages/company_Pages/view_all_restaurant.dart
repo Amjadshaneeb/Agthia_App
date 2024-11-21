@@ -41,7 +41,7 @@ class _AllRestaurantPageState extends State<AllRestaurantPage> {
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         // Display a loading indicator while the future is in progress
-                        return const Center(child: CircularProgressIndicator());
+                        return const Center(child: CircularProgressIndicator(color: Color.fromARGB(255, 255, 102, 0)));
                       } else if (snapshot.hasError) {
                         // Display an error message if the future fails
                         return Center(

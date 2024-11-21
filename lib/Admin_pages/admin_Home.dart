@@ -1,7 +1,7 @@
+import 'package:agthia_slot_booking/admin_pages/edit_restaurant.dart';
 import 'package:agthia_slot_booking/firebase_services/services.dart';
 import 'package:agthia_slot_booking/user_pages/company_Pages/career.dart';
 import 'package:agthia_slot_booking/user_pages/company_Pages/media_page.dart';
-import 'package:agthia_slot_booking/user_pages/company_Pages/view_all_restaurant.dart';
 import 'package:agthia_slot_booking/user_pages/details.dart';
 import 'package:agthia_slot_booking/user_pages/home_page_content.dart';
 import 'package:agthia_slot_booking/widgets/List/list.dart';
@@ -53,7 +53,7 @@ class _AdminHomeState extends State<AdminHome> {
           builder: (context) => IconButton(
               onPressed: () => Scaffold.of(context).openDrawer(),
               icon: const Icon(
-                Icons.arrow_back_ios_outlined,
+                Icons.keyboard_double_arrow_left_outlined,
                 color: Color.fromARGB(255, 255, 102, 0),
               )),
         ),
@@ -76,21 +76,6 @@ class _AdminHomeState extends State<AdminHome> {
             const SizedBox(
               height: 30,
             ),
-            // const SizedBox(
-            //   height: 50,
-            // ),
-            // Container(
-            //   height: 300,
-            //   decoration: const BoxDecoration(
-            //     color: Colors.white,
-            //   ),
-            //   alignment: Alignment.center,
-            //   child: isLoading
-            //       ? const CircularProgressIndicator()
-            //       : (imageUrl != null && imageUrl!.isNotEmpty)
-            //           ? Image.network(imageUrl!)
-            //           : const Text('No Image Available'),
-            // ),
             Row(
               children: [
                 const SizedBox(
@@ -216,21 +201,20 @@ class _AdminHomeState extends State<AdminHome> {
                                         ConnectionState.waiting) {
                                       return const Center(
                                         child:
-                                            CircularProgressIndicator(), // Loading indicator
+                                            CircularProgressIndicator(color: Color.fromARGB(255, 255, 102, 0)), // Loading indicator
                                       );
                                     }
 
                                     if (snapshot.hasError) {
                                       return const Center(
-                                        child: Text(
-                                            'Failed to load images or brand names.'),
+                                        child: Text('Failed to load Brands.'),
                                       );
                                     }
 
                                     if (!snapshot.hasData ||
                                         snapshot.data!.isEmpty) {
                                       return const Center(
-                                        child: Text('No data available.'),
+                                        child: Text('No Brands available.'),
                                       );
                                     }
 
@@ -278,6 +262,131 @@ class _AdminHomeState extends State<AdminHome> {
                                               ),
                                             );
                                           },
+                                          onLongPress: () {
+                                            // Show popup with Edit and Delete options
+                                            showModalBottomSheet(
+                                              backgroundColor:
+                                                  const Color(0xFF302c34),
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return Consumer<
+                                                    DeleteBrandProvider>(
+                                                  builder: (context, provider,
+                                                      child) {
+                                                    return Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      children: [
+                                                        ListTile(
+                                                          leading: const Icon(
+                                                              Icons.edit,
+                                                              color:
+                                                                  Colors.white),
+                                                          title: const Text(
+                                                              'Edit',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .white)),
+                                                          onTap: () {
+                                                            Navigator.pop(
+                                                                context); // Close the popup
+                                                            Map<String, String>
+                                                                brand =
+                                                                brandData[
+                                                                    index]; // Assuming you have a list of brand data
+
+                                                            // Navigate to the EditRestaurantScreen and pass the selected brand data
+                                                            Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                builder: (context) =>
+                                                                    EditRestaurantScreen(
+                                                                        brand:
+                                                                            brand), // Pass the selected brand
+                                                              ),
+                                                            );
+                                                          },
+                                                        ),
+                                                        ListTile(
+                                                          leading: const Icon(
+                                                              Icons.delete,
+                                                              color:
+                                                                  Colors.white),
+                                                          title: const Text(
+                                                              'Delete',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .white)),
+                                                          onTap: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                            showDialog(
+                                                              context: context,
+                                                              builder:
+                                                                  (BuildContext
+                                                                      context) {
+                                                                return AlertDialog(
+                                                                  backgroundColor:
+                                                                      const Color(
+                                                                          0xFF302c34),
+                                                                  title: const Text(
+                                                                      'Confirm Deletion',
+                                                                      style: TextStyle(
+                                                                          color:
+                                                                              Colors.white)),
+                                                                  content: const Text(
+                                                                      'Are you sure you want to delete this brand?',
+                                                                      style: TextStyle(
+                                                                          color:
+                                                                              Colors.white)),
+                                                                  actions: <Widget>[
+                                                                    TextButton(
+                                                                      onPressed:
+                                                                          () {
+                                                                        Navigator.pop(
+                                                                            context); // Close the dialog
+                                                                      },
+                                                                      child:
+                                                                          const Text(
+                                                                        'Cancel',
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                Colors.white),
+                                                                      ),
+                                                                    ),
+                                                                    TextButton(
+                                                                      onPressed:
+                                                                          () {
+                                                                        final parentContext =
+                                                                            context;
+                                                                        Navigator.pop(
+                                                                            context); // Close the dialog
+                                                                        provider.deleteBrand(
+                                                                            brandName,
+                                                                            parentContext,
+                                                                            "InterNational Brand"); // Perform deletion
+                                                                      },
+                                                                      child:
+                                                                          const Text(
+                                                                        'Delete',
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                Colors.red),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        )
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                            );
+                                          },
                                           child: Container(
                                             width: constraints.maxWidth,
                                             decoration: BoxDecoration(
@@ -306,7 +415,7 @@ class _AdminHomeState extends State<AdminHome> {
                                                           null) return child;
                                                       return const Center(
                                                         child:
-                                                            CircularProgressIndicator(),
+                                                            CircularProgressIndicator(color: Color.fromARGB(255, 255, 102, 0)),
                                                       );
                                                     },
                                                     errorBuilder: (context,
@@ -322,7 +431,8 @@ class _AdminHomeState extends State<AdminHome> {
                                                   child: Container(
                                                     decoration:
                                                         const BoxDecoration(
-                                                      color:  Color.fromARGB(255, 255, 102, 0),
+                                                      color: Color.fromARGB(
+                                                          255, 255, 102, 0),
                                                       borderRadius:
                                                           BorderRadius.only(
                                                         bottomLeft:
@@ -382,7 +492,9 @@ class _AdminHomeState extends State<AdminHome> {
                             },
                           ) // Show Carousel if index is 0
                         : selectedindex == 1
-                            ? const CarousalContainer2() // Show CarousalContainer2 if index is 1
+                            ? const CarousalContainer2(
+                                admin: true,
+                              ) // Show CarousalContainer2 if index is 1
                             : selectedindex == 2
                                 ? const MediaPage()
                                 : selectedindex == 3

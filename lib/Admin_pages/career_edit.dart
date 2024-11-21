@@ -2,10 +2,9 @@ import 'package:agthia_slot_booking/admin_pages/admin_home.dart';
 import 'package:agthia_slot_booking/user_pages/home_page_content.dart';
 import 'package:agthia_slot_booking/widgets/controllers.dart';
 import 'package:agthia_slot_booking/widgets/provider.dart';
-import 'package:agthia_slot_booking/widgets/textField.dart';
+import 'package:agthia_slot_booking/widgets/text_field.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 final firestore = FirebaseFirestore.instance;

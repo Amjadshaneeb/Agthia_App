@@ -1,7 +1,4 @@
-import 'package:agthia_slot_booking/user_pages/company_Pages/about_us.dart';
-import 'package:agthia_slot_booking/user_pages/company_Pages/contact_us.dart';
 import 'package:agthia_slot_booking/user_pages/company_Pages/ourpeople.dart';
-import 'package:agthia_slot_booking/user_pages/company_Pages/subscribe.dart';
 import 'package:agthia_slot_booking/user_pages/company_Pages/word_of_chairman.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +22,7 @@ class MyDrawer extends StatelessWidget {
                       image: AssetImage("assets/Agthia_logo.png"))),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [],
+                children:     [],
               ),
             ),
           ),

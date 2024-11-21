@@ -1,9 +1,10 @@
 import 'package:agthia_slot_booking/admin_pages/about_us.dart';
+import 'package:agthia_slot_booking/admin_pages/add_restaurant.dart';
 import 'package:agthia_slot_booking/admin_pages/career_edit.dart';
 import 'package:agthia_slot_booking/admin_pages/edit_word_of_chairman.dart';
-import 'package:agthia_slot_booking/admin_pages/add_restaurant.dart';
 import 'package:agthia_slot_booking/admin_pages/news_editpage.dart';
 import 'package:agthia_slot_booking/admin_pages/our_people.dart';
+import 'package:agthia_slot_booking/admin_pages/subscribers.dart';
 import 'package:flutter/material.dart';
 
 class AdminDrawer extends StatelessWidget {
@@ -93,10 +94,8 @@ class AdminDrawer extends StatelessWidget {
             title:
                 const Text('Add brand', style: TextStyle(color: Colors.white)),
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => EditRestaurantScreen()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const AddRestaurantPage()));
               // context,
               // CustomPageRoute(
               //     builder: (context) => ContactUsClass(),
@@ -134,6 +133,20 @@ class AdminDrawer extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => EditWordOfChairman()));
+            },
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.subscriptions,
+              color: Color.fromARGB(255, 255, 102, 0),
+            ),
+            title: const Text('Subscribers',
+                style: TextStyle(color: Colors.white)),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const SubscribersPage()));
             },
           ),
           // SizedBox(height: MediaQuery.of(context).size.height * 0.28),

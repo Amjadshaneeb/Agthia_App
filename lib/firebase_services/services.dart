@@ -72,7 +72,7 @@ Future<void> login(BuildContext context) async {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => const Center(child: CircularProgressIndicator()),
+      builder: (context) => const Center(child: CircularProgressIndicator(color: Color.fromARGB(255, 255, 102, 0))),
     );
 
     await FirebaseAuth.instance

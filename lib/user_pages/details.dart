@@ -1,7 +1,6 @@
 import 'package:agthia_slot_booking/admin_pages/admin_home.dart';
 import 'package:agthia_slot_booking/user_pages/company_Pages/contact_us.dart';
 import 'package:agthia_slot_booking/user_pages/company_Pages/subscribe.dart';
-import 'package:agthia_slot_booking/widgets/List/list.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -129,7 +128,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           ),
                         ),
                         SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.1,
+                          width: MediaQuery.of(context).size.width * 0.15,
                         ),
                         SizedBox(
                           height: 50,
@@ -183,9 +182,9 @@ class _DetailsPageState extends State<DetailsPage> {
                 child: TextButton(
                   onPressed: () {
                     showModalBottomSheet(
+                      backgroundColor: const Color(0xFF302c34),
                       context: context,
                       isScrollControlled: true,
-                      
                       shape: const RoundedRectangleBorder(
                         borderRadius:
                             BorderRadius.vertical(top: Radius.circular(16)),

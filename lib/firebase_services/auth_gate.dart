@@ -19,7 +19,7 @@ class AuthGate extends StatelessWidget {
             return const AdminHome();
           }
         }
-        return const Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator(color: Color.fromARGB(255, 255, 102, 0)));
       },
     );
   }

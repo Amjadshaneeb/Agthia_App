@@ -6,6 +6,7 @@ bool isLogin = true;
 
 void showBottomSheet(BuildContext context) {
   showModalBottomSheet(
+    backgroundColor: const Color(0xFF0f172b),
     scrollControlDisabledMaxHeightRatio: 0.9,
     isScrollControlled: false,
     context: context,

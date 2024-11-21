@@ -28,6 +28,7 @@ class SplashScreenState extends State<SplashScreen>
       Provider.of<BannerProvider>(context, listen: false).getChairmanImages();
       Provider.of<BannerProvider>(context, listen: false).getOurpeopleImages();
       Provider.of<BrandProvider>(context, listen: false).getBrandsWithImages("InterNational Brand");
+      Provider.of<BrandProvider>(context, listen: false).getBrandsWithImages("Local Brand");
   
     });
 

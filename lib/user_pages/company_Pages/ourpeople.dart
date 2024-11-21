@@ -63,7 +63,7 @@ class OurpeoplePage extends StatelessWidget {
                         .snapshots(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(child: CircularProgressIndicator());
+                        return const Center(child: CircularProgressIndicator(color: Color.fromARGB(255, 255, 102, 0)));
                       }
                       if (snapshot.hasError) {
                         return Text("Error loading data");

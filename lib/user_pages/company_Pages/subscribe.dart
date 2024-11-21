@@ -1,4 +1,4 @@
-import 'package:agthia_slot_booking/widgets/textField.dart';
+import 'package:agthia_slot_booking/widgets/text_field.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -85,7 +85,7 @@ class SubscribeBottomSheetState extends State<SubscribeBottomSheet> {
           children: [
             const Text(
               "Subscribe to our Newsletter",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Colors.white),
             ),
             const SizedBox(height: 16),
             Mytextfield(
@@ -95,7 +95,7 @@ class SubscribeBottomSheetState extends State<SubscribeBottomSheet> {
                 maxlines: 1),
             const SizedBox(height: 16),
             _isLoading
-                ? const CircularProgressIndicator()
+                ? const CircularProgressIndicator(color: Color.fromARGB(255, 255, 102, 0))
                 : ElevatedButton(
                     style: TextButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 255, 102, 0),

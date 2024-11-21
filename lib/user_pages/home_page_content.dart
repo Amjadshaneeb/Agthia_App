@@ -5,7 +5,6 @@ import 'package:agthia_slot_booking/user_pages/company_Pages/media_page.dart';
 import 'package:agthia_slot_booking/user_pages/company_Pages/view_all_restaurant.dart';
 import 'package:agthia_slot_booking/user_pages/details.dart';
 import 'package:agthia_slot_booking/user_pages/login_or_register.dart';
-import 'package:agthia_slot_booking/user_pages/notification_page.dart';
 import 'package:agthia_slot_booking/widgets/List/list.dart';
 import 'package:agthia_slot_booking/widgets/local_carousal.dart';
 import 'package:agthia_slot_booking/widgets/provider.dart';
@@ -282,7 +281,7 @@ class _HomepageState extends State<HomepageContent> {
                                         ConnectionState.waiting) {
                                       return const Center(
                                         child:
-                                            CircularProgressIndicator(), // Loading indicator
+                                            CircularProgressIndicator(color: Color.fromARGB(255, 255, 102, 0)), // Loading indicator
                                       );
                                     }
 
@@ -311,15 +310,17 @@ class _HomepageState extends State<HomepageContent> {
                                         String brandName =
                                             brandData[index]['Name'] ?? '';
                                         String reservationLink =
-                                            brandData[index]['Reservation'] ?? '';
+                                            brandData[index]['Reservation'] ??
+                                                '';
                                         String twitterLink =
                                             brandData[index]['Twitter'] ?? '';
                                         String instagramLink =
                                             brandData[index]['Instagram'] ?? '';
                                         String facebookLink =
                                             brandData[index]['Facebook'] ?? '';
-                                        String discription =
-                                            brandData[index]['Description'] ?? '';
+                                        String discription = brandData[index]
+                                                ['Description'] ??
+                                            '';
 
                                         return GestureDetector(
                                           onTap: () {
@@ -329,13 +330,14 @@ class _HomepageState extends State<HomepageContent> {
                                               MaterialPageRoute(
                                                 builder: (context) =>
                                                     DetailsPage(
-                                                      isAdmin: false,
+                                                  isAdmin: false,
                                                   imageUrl: imageUrl,
                                                   brandName: brandName,
                                                   description: discription,
-                                                  reservationLink: reservationLink,
+                                                  reservationLink:
+                                                      reservationLink,
                                                   instagramLink: instagramLink,
-                                                  twitterLink:twitterLink,
+                                                  twitterLink: twitterLink,
                                                   facebookLink: facebookLink,
                                                 ),
                                               ),
@@ -369,7 +371,7 @@ class _HomepageState extends State<HomepageContent> {
                                                           null) return child;
                                                       return const Center(
                                                         child:
-                                                            CircularProgressIndicator(),
+                                                            CircularProgressIndicator(color: Color.fromARGB(255, 255, 102, 0)),
                                                       );
                                                     },
                                                     errorBuilder: (context,
@@ -385,7 +387,8 @@ class _HomepageState extends State<HomepageContent> {
                                                   child: Container(
                                                     decoration:
                                                         const BoxDecoration(
-                                                      color:  Color.fromARGB(255, 255, 102, 0),
+                                                      color: Color.fromARGB(
+                                                          255, 255, 102, 0),
                                                       borderRadius:
                                                           BorderRadius.only(
                                                         bottomLeft:
@@ -446,7 +449,9 @@ class _HomepageState extends State<HomepageContent> {
                             },
                           ) // Show Carousel if index is 0
                         : selectedindex == 1
-                            ? const CarousalContainer2() // Show CarousalContainer2 if index is 1
+                            ? const CarousalContainer2(
+                                admin: false,
+                              ) // Show CarousalContainer2 if index is 1
                             : selectedindex == 2
                                 ? const MediaPage()
                                 : selectedindex == 3

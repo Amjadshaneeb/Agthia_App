@@ -93,7 +93,7 @@ class _WordOfChairmanState extends State<WordOfChairman> {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
                                 return const Center(
-                                    child: CircularProgressIndicator());
+                                    child: CircularProgressIndicator(color: Color.fromARGB(255, 255, 102, 0)));
                               }
                               if (snapshot.hasError) {
                                 return const Text("Error loading data");

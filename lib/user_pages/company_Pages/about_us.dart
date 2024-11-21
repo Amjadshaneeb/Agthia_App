@@ -1,5 +1,4 @@
 import 'package:agthia_slot_booking/user_pages/company_Pages/contact_us.dart';
-import 'package:agthia_slot_booking/user_pages/home_bottom_navigation.dart';
 import 'package:agthia_slot_booking/widgets/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -71,7 +70,7 @@ class AboutUs extends StatelessWidget {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
                             return const Center(
-                                child: CircularProgressIndicator());
+                                child: CircularProgressIndicator(color: Color.fromARGB(255, 255, 102, 0)));
                           }
                           if (snapshot.hasError) {
                             return Text("Error loading data");

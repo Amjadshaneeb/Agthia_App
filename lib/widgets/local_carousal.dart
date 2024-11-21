@@ -1,15 +1,17 @@
+import 'package:agthia_slot_booking/admin_pages/edit_restaurant.dart';
 import 'package:agthia_slot_booking/user_pages/details.dart';
 import 'package:agthia_slot_booking/widgets/provider.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:agthia_slot_booking/widgets/List/list.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 final controller2 = CarouselController();
 
 class CarousalContainer2 extends StatefulWidget {
-  const CarousalContainer2({super.key});
+  const CarousalContainer2({super.key, required this.admin});
+
+  final bool admin;
 
   @override
   State<CarousalContainer2> createState() => AdvContainerState();
@@ -31,7 +33,7 @@ class AdvContainerState extends State<CarousalContainer2> {
                 future: provider.getBrandsWithImages("Local Brand"),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator(color: Color.fromARGB(255, 255, 102, 0)));
                   }
 
                   if (snapshot.hasError) {
@@ -77,6 +79,105 @@ class AdvContainerState extends State<CarousalContainer2> {
                             ),
                           );
                         },
+                        onLongPress: () {
+                          if(widget.admin){
+                          showModalBottomSheet(
+                            backgroundColor: const Color(0xFF302c34),
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Consumer<DeleteBrandProvider>(
+                                builder: (context, provider, child) {
+                                  return Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      ListTile(
+                                        leading: const Icon(Icons.edit,
+                                            color: Colors.white),
+                                        title: const Text('Edit',
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                        onTap: () {
+                                          Navigator.pop(
+                                              context); // Close the popup
+                                          Map<String, String> brand =
+                                              brandData[index];
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  EditRestaurantScreen(
+                                                      brand: brand),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                      ListTile(
+                                        leading: const Icon(Icons.delete,
+                                            color: Colors.white),
+                                        title: const Text('Delete',
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return AlertDialog(
+                                                backgroundColor:
+                                                    const Color(0xFF302c34),
+                                                title: const Text(
+                                                    'Confirm Deletion',
+                                                    style: TextStyle(
+                                                        color: Colors.white)),
+                                                content: const Text(
+                                                    'Are you sure you want to delete this brand?',
+                                                    style: TextStyle(
+                                                        color: Colors.white)),
+                                                actions: <Widget>[
+                                                  TextButton(
+                                                    onPressed: () {
+                                                      Navigator.pop(
+                                                          context); // Close the dialog
+                                                    },
+                                                    child: const Text(
+                                                      'Cancel',
+                                                      style: TextStyle(
+                                                          color: Colors.white),
+                                                    ),
+                                                  ),
+                                                  TextButton(
+                                                    onPressed: () {
+                                                      final parentContext =
+                                                          context;
+                                                      Navigator.pop(
+                                                          context); // Close the dialog
+                                                      provider.deleteBrand(
+                                                          brandName,
+                                                          parentContext,
+                                                          "InterNational Brand"); // Perform deletion
+                                                    },
+                                                    child: const Text(
+                                                      'Delete',
+                                                      style: TextStyle(
+                                                          color: Colors.red),
+                                                    ),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        },
+                                      )
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                          );
+                            
+                          }
+                          // Show popup with Edit and Delete options
+                        },
                         child: Container(
                           width: constraints.maxWidth,
                           decoration: BoxDecoration(
@@ -97,7 +198,7 @@ class AdvContainerState extends State<CarousalContainer2> {
                                       (context, child, loadingProgress) {
                                     if (loadingProgress == null) return child;
                                     return const Center(
-                                      child: CircularProgressIndicator(),
+                                      child: CircularProgressIndicator(color: Color.fromARGB(255, 255, 102, 0)),
                                     );
                                   },
                                   errorBuilder: (context, error, stackTrace) {

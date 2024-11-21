@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => BrandProvider()),
         ChangeNotifierProvider(create: (_) => ImagePickerProvider()),
         ChangeNotifierProvider(create: (_) => BannerProvider()),
+        ChangeNotifierProvider(create: (_) => DeleteBrandProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

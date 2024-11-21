@@ -9,13 +9,14 @@ class Mytextfield extends StatelessWidget {
       required this.controller,
       required this.maxlines,
       this.textStyle,
-      this.inputFormatters});
+      this.inputFormatters, this.numbers});
   final String hinttext;
   final int maxlines;
   final bool obscure;
   final TextEditingController controller;
   final TextStyle? textStyle;
   final List<TextInputFormatter>? inputFormatters;
+  final TextInputType? numbers;
 
   @override
   Widget build(BuildContext context) {
@@ -30,15 +31,17 @@ class Mytextfield extends StatelessWidget {
       obscureText: obscure,
       controller: controller,
       maxLines: maxlines,
+      keyboardType: numbers,
       decoration: InputDecoration(
           contentPadding:
               const EdgeInsets.symmetric(vertical: 18, horizontal: 12),
           hintText: hinttext,
           hintStyle: TextStyle(color: Colors.grey.withOpacity(0.6)),
-          border: OutlineInputBorder(),
-          focusedBorder: OutlineInputBorder(
+          border: const OutlineInputBorder(),
+          
+          focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Color.fromARGB(255, 255, 102, 0)))),
-      style: textStyle ?? TextStyle(color: Colors.white),
+      style: textStyle ?? const TextStyle(color: Colors.white),
     );
   }
 }

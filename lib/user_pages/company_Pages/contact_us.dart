@@ -1,7 +1,4 @@
-import 'package:agthia_slot_booking/admin_pages/admin_home.dart';
 import 'package:agthia_slot_booking/user_pages/company_Pages/feedback.dart';
-import 'package:agthia_slot_booking/user_pages/home_bottom_navigation.dart';
-import 'package:agthia_slot_booking/user_pages/home_page_content.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

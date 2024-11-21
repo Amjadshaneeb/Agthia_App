@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
 
 final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 final TextEditingController aboutusController = TextEditingController();
@@ -98,6 +99,21 @@ class FunctionProvider extends ChangeNotifier {
 }
 
 class BrandProvider extends ChangeNotifier {
+  Future<bool> isValidUrl(String url) async {
+    final Uri? uri = Uri.tryParse(url);
+    
+    if (uri == null || (uri.scheme != 'http' && uri.scheme != 'https')) {
+      return false;
+    }
+
+    try {
+      final response = await http.head(uri).timeout(const Duration(seconds: 5));
+      return response.statusCode == 200;
+    } catch (e) {
+      return false;
+    }
+  }
+
   Future<List<Map<String, String>>> getMergedBrandsData() async {
     try {
       // References to Firestore collections
@@ -152,6 +168,7 @@ class BrandProvider extends ChangeNotifier {
 
         return {
           'Name': data['Name']?.toString() ?? 'No Name',
+          'Index': data['Index']?.toString() ?? '',
           'Url': data['Url']?.toString() ?? '',
           'Facebook': data['Facebook']?.toString() ?? '',
           'Instagram': data['Instagram']?.toString() ?? '',
@@ -160,6 +177,12 @@ class BrandProvider extends ChangeNotifier {
           'Description': data['Description']?.toString() ?? 'No Description'
         };
       }).toList();
+
+      brandData.sort((a, b) {
+        int indexA = int.tryParse(a['Index'] ?? '0') ?? 0;
+        int indexB = int.tryParse(b['Index'] ?? '0') ?? 0;
+        return indexA.compareTo(indexB);
+      });
 
       return brandData;
     } catch (e, stacktrace) {
@@ -324,5 +347,17 @@ class BannerProvider extends ChangeNotifier {
     } catch (e) {
       print('Failed to get image URL: $e');
     }
+  }
+}
+
+class DeleteBrandProvider extends ChangeNotifier {
+  Future<void> deleteBrand(
+      String docId, BuildContext context, String collectionName) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection(collectionName)
+          .doc(docId)
+          .delete();
+    } catch (e) {}
   }
 }

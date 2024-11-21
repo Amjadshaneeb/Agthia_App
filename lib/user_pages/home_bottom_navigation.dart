@@ -1,6 +1,5 @@
 import 'package:agthia_slot_booking/user_pages/company_Pages/about_us.dart';
 import 'package:agthia_slot_booking/user_pages/company_Pages/contact_us.dart';
-import 'package:agthia_slot_booking/user_pages/company_Pages/word_of_chairman.dart';
 import 'package:agthia_slot_booking/user_pages/home_page_content.dart';
 import 'package:agthia_slot_booking/user_pages/search_page.dart';
 import 'package:flutter/material.dart';

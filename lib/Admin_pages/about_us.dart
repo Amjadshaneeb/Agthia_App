@@ -1,6 +1,6 @@
 import 'package:agthia_slot_booking/admin_pages/admin_home.dart';
 import 'package:agthia_slot_booking/widgets/provider.dart';
-import 'package:agthia_slot_booking/widgets/textField.dart';
+import 'package:agthia_slot_booking/widgets/text_field.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

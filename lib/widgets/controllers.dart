@@ -6,8 +6,11 @@ final TextEditingController contactusController = TextEditingController();
 final TextEditingController careerController = TextEditingController();
 final TextEditingController searchController = TextEditingController();
 final TextEditingController chairmanWord = TextEditingController();
- TextEditingController nameController = TextEditingController();
+
+   TextEditingController nameController = TextEditingController();
   TextEditingController homePageOrderController = TextEditingController();
-  TextEditingController faceLinkController = TextEditingController();
+  TextEditingController facebookLinkController = TextEditingController();
   TextEditingController reservationController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  TextEditingController twitterLinkController = TextEditingController();
+  TextEditingController instagramLinkController = TextEditingController();

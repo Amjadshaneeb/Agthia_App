@@ -73,7 +73,7 @@ class BrandSearchPageState extends State<Searchpage> {
 
       // Optionally show an error message in the UI (e.g., using a SnackBar or AlertDialog)
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('No Brand Found')),
+        const SnackBar(content: Text('No Brand Found')),
       );
     } finally {
       setState(() {
@@ -106,12 +106,12 @@ class BrandSearchPageState extends State<Searchpage> {
           Padding(
             padding: const EdgeInsets.all(15),
             child: TextField(
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
               inputFormatters: [UpperCaseTextFormatter()],
               decoration: InputDecoration(
                   labelText: 'Enter brand name',
                   labelStyle: TextStyle(color: Colors.white.withOpacity(0.4)),
-                  focusedBorder: OutlineInputBorder(
+                  focusedBorder: const OutlineInputBorder(
                       borderSide:
                           BorderSide(color: Color.fromARGB(255, 255, 102, 0)))),
               onChanged: (value) {
@@ -122,7 +122,7 @@ class BrandSearchPageState extends State<Searchpage> {
             ),
           ),
           ElevatedButton(
-            style: ButtonStyle(
+            style: const ButtonStyle(
                 backgroundColor:
                     WidgetStatePropertyAll(Color.fromARGB(255, 255, 102, 0))),
             onPressed: () {
@@ -135,7 +135,7 @@ class BrandSearchPageState extends State<Searchpage> {
               }
             },
             child: isLoading
-                ? SizedBox(
+                ? const SizedBox(
                     height: 20,
                     width: 20,
                     child: CircularProgressIndicator(
@@ -143,7 +143,7 @@ class BrandSearchPageState extends State<Searchpage> {
                       strokeWidth: 2,
                     ),
                   )
-                : Text(
+                : const Text(
                     'Search',
                     style: TextStyle(color: Colors.white),
                   ),
@@ -165,7 +165,7 @@ class BrandSearchPageState extends State<Searchpage> {
                 return ListTile(
                   title: Text(
                     brandName,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
                   onTap: () {
                     Navigator.push(
